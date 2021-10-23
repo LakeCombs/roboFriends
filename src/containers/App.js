@@ -6,6 +6,7 @@ import Scroll from "../components/Scroll";
 import ErrorBoundary from "../components/errorBoundary";
 import "./App.css";
 import { setSearchField } from "../redux/action";
+import { searchRobots } from "../redux/reducers";
 
 const mapStateToProps = (state) => {
   return {
@@ -25,7 +26,6 @@ class App extends Component {
     super();
     this.state = {
       robots: [],
-      searchfield: "",
     };
   }
 
@@ -39,21 +39,18 @@ class App extends Component {
       });
   }
 
-  onSearchChange = (e) => {
-    this.setState({ searchfield: e.target.value });
-  };
   render() {
-    const { robots, searchfield } = this.state;
+    const { robots } = this.state;
+    const { searchField, onSearchChange } = this.props;
     const filteredRobots = robots.filter((robot) => {
-      return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+      return robot.name.includes(searchField);
     });
-
     return !robots.length ? (
       <h1> Loading</h1>
     ) : (
       <div className="tc">
         <h1 className="f1 ">RoboFriends </h1>
-        <SearchBox searchChange={this.onSearchChange} />
+        <SearchBox searchChange={onSearchChange} />
         <Scroll>
           <ErrorBoundary>
             <CardList robots={filteredRobots} />
