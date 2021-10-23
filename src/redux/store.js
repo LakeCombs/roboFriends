@@ -1,6 +1,9 @@
 import { createStore, combineReducers } from "redux";
+import { searchRobots } from "./reducers";
 
-const appReducers = combineReducers({});
+const appReducers = combineReducers({
+  searchRobots,
+});
 
 export const store = createStore(appReducers);
 
