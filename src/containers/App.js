@@ -4,6 +4,7 @@ import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import ErrorBoundary from "../components/errorBoundary";
 import "./App.css";
+import { setSearchField } from "../redux/action";
 
 class App extends Component {
   constructor() {
